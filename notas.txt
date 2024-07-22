@@ -1,0 +1,9 @@
+---FALTA---
+
+Gestion de stock 
+Carrito de compras
+Cambio de estado
+Session
+Error al mostrar la img en gestion productos
+Cambiar el color del menu
+
