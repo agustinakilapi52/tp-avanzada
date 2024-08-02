@@ -25,20 +25,20 @@ class Session
         // Busca al usuario en la base de datos por nombre de usuario
         $parametros = ['usnombre' => $usnombre];
         $usuarioLogueado = $usuario->buscarUsuario($parametros);
-    
+        
         // Verifica si el usuario existe
         if (!empty($usuarioLogueado)) {
             $usuarioData = $usuarioLogueado[0];
             // Verifica si el usuario no está deshabilitado
             if ($usuarioData->getUserDeshabilitado() == '0000-00-00 00:00:00' || $usuarioData->getUserDeshabilitado() == NULL) {
                 // Verifica la contraseña
-                if (password_verify($uspass, $usuarioData->getUserPass())) {
+                if (password_verify($uspass, $usuarioData->getUserPass())) { 
                     // Almacena la información en la sesión
                     $_SESSION['idusuario'] = $usuarioData->getIdUsuario();
                     $_SESSION['usnombre'] = $usuarioData->getUserNombre();
                     $_SESSION['id_roles'] = $rol->getAllRolesUser($usuarioData->getIdUsuario());
                     $rta = true;
-                }
+                } 
             }
         }
     

@@ -136,13 +136,10 @@ class Model_menurol extends BaseDatos
     {
         $listaMenuRol = [];
         $query = "SELECT * FROM menurol ";
-
         if ($parametro != '') {
             $query.= 'WHERE ' . $parametro;
         }
-
         $rta = $this->Ejecutar($query);
-
         if ($rta > -1) {
             if ($rta > 0) {
                 while ($row = $this->Registro()) {

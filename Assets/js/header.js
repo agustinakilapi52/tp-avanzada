@@ -2,9 +2,11 @@ const cerrar_carrito = document.getElementById('cerrar_carrito');
 const modal_carrito = document.getElementById('myModalCasero');
 
 // Función para cerrar el carrito
-cerrar_carrito.addEventListener('click', () => {
-  modal_carrito.style.display = 'none';
-});
+if (cerrar_carrito) {
+  cerrar_carrito.addEventListener('click', () => {
+    modal_carrito.style.display = 'none';
+  });
+}
 
 const getAllCarrito = async () => {
   const tabla_carrito = document.getElementById('tabla_carrito');

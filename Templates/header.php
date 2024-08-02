@@ -1,3 +1,9 @@
+ 
+ <?php
+$objMenu = new Menu();
+$menu = $objMenu->getRolesParaMenu($MI_SESION->getUsuarioRolesLogueado());
+$menu = $objMenu->estructuraMenu($menu);
+ ?>
  <!DOCTYPE html>
 <html lang="en">
 
@@ -29,14 +35,23 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarScroll">
-      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll gap-3" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">INICIO</a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link ">ADMIN</a>
-        </li>
+        <?php if ($MI_SESION->validar()): 
+        $usuario =  $MI_SESION->getUsuario();
+        ?>
+          <?php echo $menu ?>
+          <li><a class="btn btn-danger" href="<?= $PRINCIPAL ?>View/login/action/accion_cerrar_sesion.php">Cerrar Sesión</a></li>
+          
+        <?php else: ?>
+          <li class="nav-item">
+            <a class="btn btn-primary" href="<?= $PRINCIPAL ?>View/login/login.php">Iniciar Sesion</a>
+          </li>
+        <?php endif; ?>
+
       </ul>
     
       <ul class="d-flex p-4 ">
@@ -48,7 +63,6 @@
         </li>
 
       </ul>
-    
       
     </div>
   </div>
@@ -57,7 +71,7 @@
 //modal carrito
 
 
-  <script src="<?= $PRINCIPAL ?>Assets/js/header.js"></script>
-<script src="<?= $PRINCIPAL ?>Assets/js/jquery-3.7.1.min.js"></script>
-<script src="<?= $PRINCIPAL ?>Assets/js/bootstrap.bundle.min.js"></script>
+  <!-- <script src="<?= $PRINCIPAL ?>Assets/js/header.js"></script>
+<script src="<?= $PRINCIPAL ?>Assets/js/jquery-3.7.1.min.js"></script> -->
+<!-- <script src="<?= $PRINCIPAL ?>Assets/js/bootstrap.bundle.min.js"></script> -->
 </body>

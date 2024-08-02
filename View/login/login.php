@@ -1,14 +1,12 @@
 <?php
 include_once('../../configuracion.php');
 include_once('../../Templates/header.php');
-$objMenu = new Menu();
-$menu = $objMenu->getRolesParaMenu($MI_SESION->getUsuarioRolesLogueado());
-$menu = $objMenu->drawMenu($menu);
+
 ?>
 
 
     <div>
-        <div style="position: relative;">
+        <div style="position: relative; text-align: center;">
             <img src="../../Assets/images/login.png" style="filter: brightness(50%);" alt="Imagen Login">
 
             <div >
@@ -41,7 +39,6 @@ $menu = $objMenu->drawMenu($menu);
 
                         <div class="d-flex justify-content-end">
                             <input type="submit" class="btn btn-optimizado"  id="btnSubmit" value="Ingresar"></input>
-
                         </div>
                     </div>
 

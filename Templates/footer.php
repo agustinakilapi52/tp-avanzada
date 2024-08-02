@@ -10,5 +10,6 @@
   </div>
 </div>
 
+<script src="<?= $PRINCIPAL ?>Assets/js/header.js"></script>
 <script src="<?= $PRINCIPAL ?>Assets/js/bootstrap.bundle.min.js"></script>
 <script src="<?= $PRINCIPAL ?>Assets/js/jquery-3.7.1.min.js"></script>

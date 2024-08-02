@@ -8,7 +8,7 @@ function iniciarSesion(e) {
 
     return $.ajax({
         type: "POST",
-        url: "accion/accion_verificar_login.php",
+        url: "action/accion_verificar_login.php",
         data: form,
         processData: false,
         contentType: false,
@@ -23,8 +23,9 @@ document.getElementById('form_login').onsubmit = function(event) {
     const autorizarForm = this;
     iniciarSesion(autorizarForm)
         .done(function(data) {
-            console.log(data);
-            window.location.replace('../../index.php');
+            if (data) {
+                window.location.replace('../../index.php');
+            }
         })
         .fail((err) => {
             console.error('Error:', err);

@@ -31,8 +31,8 @@ class Menu
     {
         $objMenuRol = new Model_menurol();
         $menu = [];
-
         if (count($id_roles) > 0) {
+            // Si el ROL 1 (ADMIN) esta en el arreglo de $id_roles, entonces se le muestran todos los menus
             if (in_array(1, $id_roles)) {
                 $where = ' true GROUP BY idmenu';
                 $lista_objMenu = $objMenuRol->Listar($where);
@@ -108,6 +108,33 @@ class Menu
         }
 
         return $resultado;
+    }
+
+    public function estructuraMenu($menu) {
+        $html = '';
+        if (empty($menu)) {
+            return $html;
+        }
+        foreach ($menu as $m) {
+            $id_padre = $m['id_padre'];
+            $tiene_padre = $id_padre != NULL ? true : false;
+            $nombre = $m['nombre'];
+            if ($tiene_padre) {
+                $html .= '<li><a class="dropdown-item" href="#">' . $nombre . '</a></li>';
+            } else {
+                if (isset($m['children'])) {
+                    $html .= '<div class="dropdown">';
+                    $html .= '<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">' . $nombre . '</button>';
+                    $html .= '<ul class="dropdown-menu">';
+                    $html .= $this->estructuraMenu($m['children']);
+                    $html .= '</ul>';
+                    $html .= '</div>';
+                } else {
+                    $html .= '<li><a class="dropdown-item" href="#">' . $nombre . '</a></li>';
+                }
+            }
+        }
+        return $html;
     }
 
     
